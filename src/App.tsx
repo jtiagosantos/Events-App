@@ -1,5 +1,9 @@
+import Home from './pages/Home';
+
 export function App(): JSX.Element {
   return (
-    <h1>Hello React</h1>
+    <>
+      <Home />
+    </>
   );
 };
