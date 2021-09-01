@@ -7,15 +7,16 @@ import './styles.scss';
 export default function Login(): JSX.Element {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [message, setMessage] = useState('');
 
   const auth = getAuth();
 
   async function logInto() {
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      alert("Usuário logado!");
+      setMessage('Wow! Login realizado com sucesso!');
     }catch(err) {
-      alert(err);
+      setMessage('Ops! E-mail e/ou senha incorretos!');
     };
   };
 
@@ -43,11 +44,7 @@ export default function Login(): JSX.Element {
 
         <div className="message-login text-white text-center my-4">
           <span>
-            <strong>Wow!</strong> Login realizado com sucesso!
-          </span>
-          <br /> 
-          <span>
-            <strong>Ops!</strong> E-mail e/ou senha incorretos!
+            <strong>{ message }</strong>
           </span>
         </div>
 
