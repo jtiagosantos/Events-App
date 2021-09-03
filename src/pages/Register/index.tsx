@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import { getAuth, createUserWithEmailAndPassword } from '../../services/firebase';
 
@@ -72,6 +73,10 @@ export default function Register(): JSX.Element {
           <span>
             <strong>{ message }</strong>
           </span>
+        </div>
+
+        <div className="option-register mt-5 text-center">
+          <Link to="/"  className="mx-2">Já tem uma conta? Faça login!</Link>
         </div>
       </form>
     </div>

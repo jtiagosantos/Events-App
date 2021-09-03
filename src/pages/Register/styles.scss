@@ -15,4 +15,16 @@
       transition: .2s ease-in;
     }
   }
+
+  .option-register {
+    a {
+      text-decoration: none;
+      color: #fff;
+      transition: .2s ease-in;
+
+      &:hover {
+        color: #f21667;
+      }
+    }
+  }
 }

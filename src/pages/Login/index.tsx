@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import { getAuth, signInWithEmailAndPassword } from '../../services/firebase';
 
@@ -51,7 +52,7 @@ export default function Login(): JSX.Element {
         <div className="options-login mt-5 text-center">
           <a href="#" className="mx-2">Recuperar senha</a>
           <span className="text-white">&#9733;</span>
-          <a href="#" className="mx-2">Fazer cadastro</a>
+          <Link to="/register" className="mx-2">Fazer cadastro </Link>
         </div>
       </form>
     </div>
