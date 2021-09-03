@@ -14,9 +14,9 @@ export default function Login(): JSX.Element {
   async function logInto() {
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      setMessage('Wow! Login realizado com sucesso!');
+      setMessage('Login realizado com sucesso!');
     }catch(err) {
-      setMessage('Ops! E-mail e/ou senha incorretos!');
+      setMessage('E-mail e/ou senha incorretos!');
     };
   };
 

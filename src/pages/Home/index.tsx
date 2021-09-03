@@ -1,4 +1,5 @@
 import Login from '../../components/Login';
+import Register from '../../components/Register';
 
 import './styles.scss';
 
