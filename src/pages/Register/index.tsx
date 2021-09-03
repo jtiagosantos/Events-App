@@ -64,7 +64,7 @@ export default function Register(): JSX.Element {
 
         {loading && (
           <button className="w-100 btn btn-lg btn-register mt-3" type="button" disabled>
-            <span className="spinner-border spinner-border-sm me-2 fs-6" role="status" aria-hidden="true"></span>
+            <span className="spinner-border spinner-border-sm mr-2 m-1 h6" role="status" aria-hidden="true"></span>
             Cadastrar...
           </button>
         )}
