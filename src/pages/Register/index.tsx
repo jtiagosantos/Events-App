@@ -76,7 +76,7 @@ export default function Register(): JSX.Element {
         </div>
 
         <div className="option-register mt-5 text-center">
-          <Link to="/"  className="mx-2">Já tem uma conta? Faça login!</Link>
+          <Link to="/login"  className="mx-2">Já tem uma conta? Faça login!</Link>
         </div>
       </form>
     </div>
