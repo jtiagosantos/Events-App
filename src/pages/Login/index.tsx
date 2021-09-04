@@ -1,7 +1,9 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 import { getAuth, signInWithEmailAndPassword } from '../../services/firebase';
+
+import { useSelector, useDispatch, RootStateOrAny } from 'react-redux';
 
 import './styles.scss';
 
@@ -10,12 +12,17 @@ export default function Login(): JSX.Element {
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
 
+  const dispatch = useDispatch();
+
   const auth = getAuth();
 
   async function logInto() {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       setMessage('Login realizado com sucesso!');
+      setTimeout(() => {
+        dispatch({ type: 'LOG_IN', userEmail: email });
+      }, 2000);
     }catch(err) {
       setMessage('E-mail e/ou senha incorretos!');
     };
@@ -23,6 +30,11 @@ export default function Login(): JSX.Element {
 
   return(
     <div className="login-content d-flex align-items-center">
+
+      {
+        useSelector((state: RootStateOrAny) => state.userLogged) && <Redirect to="/" />
+      }
+
       <form className="form-signin text-center mx-auto">
         <h1 className="h3 mb-3 fw-bold text-white">Login</h1>
 
