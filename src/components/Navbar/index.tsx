@@ -1,8 +1,12 @@
 import { Link } from 'react-router-dom';
 
+import { useSelector, useDispatch, RootStateOrAny } from 'react-redux';
+
 import './styles.scss';
 
 export default function Navbar(): JSX.Element {
+  const dispatch = useDispatch();
+
   return(
     <nav className="navbar navbar-expand-lg">
       <span className="navbar-brand text-white font-weight-bold">Events App</span>
@@ -11,12 +15,30 @@ export default function Navbar(): JSX.Element {
       </button>
       <div className="collapse navbar-collapse" id="navbarNav">
         <ul className="navbar-nav">
-          <li className="nav-item">
-            <Link className="nav-link" aria-current="page" to="/login">Entrar</Link>
-          </li>
-          <li className="nav-item">
-            <Link className="nav-link" aria-current="page" to="/register">Cadastrar</Link>
-          </li>
+          {
+            useSelector((state: RootStateOrAny) => state.userLogged) ?
+          <>
+            <li className="nav-item">
+              <Link className="nav-link" aria-current="page" to="">Publicar Evento</Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" aria-current="page" to="">Meus Eventos</Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" aria-current="page" to="" 
+                onClick={ () => dispatch({ type: 'LOG_OUT' }) }>Sair</Link>
+            </li>
+          </>
+           :
+          <>
+            <li className="nav-item">
+              <Link className="nav-link" aria-current="page" to="/login">Entrar</Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" aria-current="page" to="/register">Cadastrar</Link>
+            </li>
+          </>
+          }
         </ul>
       </div>
     </nav>
