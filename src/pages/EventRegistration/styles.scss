@@ -1,0 +1,16 @@
+.content {
+  textarea {
+    resize: none;
+  }
+  
+  .btn-publish {
+    background-color: #fff;
+    color: #614ea6;
+  
+    &:hover {
+      background-color: #f21667;
+      color: #fff;
+      transition: .2s ease-in;
+    }
+  }
+}

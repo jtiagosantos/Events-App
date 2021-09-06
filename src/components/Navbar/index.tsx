@@ -19,7 +19,7 @@ export default function Navbar(): JSX.Element {
             useSelector((state: RootStateOrAny) => state.userLogged) ?
           <>
             <li className="nav-item">
-              <Link className="nav-link" aria-current="page" to="">Publicar Evento</Link>
+              <Link className="nav-link" aria-current="page" to="/register_event">Publicar Evento</Link>
             </li>
             <li className="nav-item">
               <Link className="nav-link" aria-current="page" to="">Meus Eventos</Link>
