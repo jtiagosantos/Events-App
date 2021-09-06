@@ -5,6 +5,8 @@ import { getAuth, signInWithEmailAndPassword } from '../../services/firebase';
 
 import { useSelector, useDispatch, RootStateOrAny } from 'react-redux';
 
+import TitleApp from '../../components/TitleApp';
+
 import './styles.scss';
 
 export default function Login(): JSX.Element {
@@ -29,44 +31,48 @@ export default function Login(): JSX.Element {
   };
 
   return(
-    <div className="login-content d-flex align-items-center">
+    <>
+      <TitleApp />
 
-      {
-        useSelector((state: RootStateOrAny) => state.userLogged) && <Redirect to="/" />
-      }
+      <div className="login-content d-flex align-items-center">
 
-      <form className="form-signin text-center mx-auto">
-        <h1 className="h3 mb-3 fw-bold text-white">Login</h1>
+        {
+          useSelector((state: RootStateOrAny) => state.userLogged) && <Redirect to="/" />
+        }
 
-        <input 
-          onChange={ e => setEmail(e.target.value) } 
-          value={ email } 
-          type="email" 
-          className="form-control my-2" 
-          placeholder="E-mail" 
-        />
-        <input 
-          onChange={ e => setPassword(e.target.value) }
-          value={ password }
-          type="password" 
-          className="form-control my-2" 
-          placeholder="Senha" 
-        />
+        <form className="form-signin text-center mx-auto">
+          <h1 className="h3 mb-3 fw-bold text-white">Login</h1>
 
-        <button onClick={ logInto } className="w-100 btn btn-lg btn-login mt-3" type="button">Entrar</button>
+          <input 
+            onChange={ e => setEmail(e.target.value) } 
+            value={ email } 
+            type="email" 
+            className="form-control my-2" 
+            placeholder="E-mail" 
+          />
+          <input 
+            onChange={ e => setPassword(e.target.value) }
+            value={ password }
+            type="password" 
+            className="form-control my-2" 
+            placeholder="Senha" 
+          />
 
-        <div className="message-login text-white text-center my-4">
-          <span>
-            <strong>{ message }</strong>
-          </span>
+          <button onClick={ logInto } className="w-100 btn btn-lg btn-login mt-3" type="button">Entrar</button>
+
+          <div className="message-login text-white text-center my-4">
+            <span>
+              <strong>{ message }</strong>
+            </span>
+          </div>
+
+          <div className="options-login mt-5 text-center">
+            <Link to="/recover_password" className="mx-2">Recuperar senha</Link>
+            <span className="text-white">&#9733;</span>
+            <Link to="/register" className="mx-2">Fazer cadastro </Link>
+          </div>
+        </form>
         </div>
-
-        <div className="options-login mt-5 text-center">
-          <Link to="/recover_password" className="mx-2">Recuperar senha</Link>
-          <span className="text-white">&#9733;</span>
-          <Link to="/register" className="mx-2">Fazer cadastro </Link>
-        </div>
-      </form>
-    </div>
+    </>
   );
 };
