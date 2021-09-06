@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Home from './pages/Home';
+import PasswordRecovery from './pages/RecoverPassword';
 
 export function App(): JSX.Element {
   return (
@@ -15,6 +16,7 @@ export function App(): JSX.Element {
           <Route exact path="/" component={Home} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
+          <Route exact path="/recover_password" component={PasswordRecovery} />
         </Switch>
       </BrowserRouter>
     </Provider>

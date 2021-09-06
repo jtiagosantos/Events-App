@@ -62,7 +62,7 @@ export default function Login(): JSX.Element {
         </div>
 
         <div className="options-login mt-5 text-center">
-          <a href="#" className="mx-2">Recuperar senha</a>
+          <Link to="/recover_password" className="mx-2">Recuperar senha</Link>
           <span className="text-white">&#9733;</span>
           <Link to="/register" className="mx-2">Fazer cadastro </Link>
         </div>
