@@ -1,0 +1,25 @@
+.footer-card {
+  color: #614ea6;
+  height: 35px;
+}
+
+.btn-details {
+  background: #614ea6;
+  color: #fff;
+
+  &:hover {
+    background: #f21667;
+    color: #fff;
+    transition: .2s ease-in;
+  }
+}
+
+.card-text {
+  max-height: 100px;
+  overflow: hidden;
+}
+
+.img-card {
+  max-height: 200px;
+  min-width: 100%;
+}
