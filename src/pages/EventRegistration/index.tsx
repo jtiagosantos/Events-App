@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import { useSelector, RootStateOrAny } from 'react-redux';
 
 import { getFirestore, collection, addDoc } from "firebase/firestore";
+import { getApp } from "firebase/app";
+import { getStorage, ref, uploadBytes } from "firebase/storage";
 
 import Navbar from '../../components/Navbar';
 
@@ -20,9 +22,16 @@ export default function EventRegistration(): JSX.Element {
   const userEmail = useSelector((state: RootStateOrAny) => state.userEmail);
 
   const db = getFirestore();
+  const firebaseApp = getApp();
+  const storage = getStorage(firebaseApp, "gs://events-app-704a6.appspot.com");
+  const storageReference = ref(storage, `images/${photo?.name}`);
+
+  async function fileToBlob(file:any) {
+    return new Blob([new Uint8Array(await file.arrayBuffer())], {type: file.type });
+  }
 
   async function registerEvent() {
-
+    
     try {
       await addDoc(collection(db, "events"), {
         title,
@@ -36,6 +45,8 @@ export default function EventRegistration(): JSX.Element {
         public: 0,
         createdAt: new Date()
       });
+      await uploadBytes(storageReference, await fileToBlob(photo));
+      
       alert('Evento publicado!');
     } catch(err) {
       alert(err)

@@ -1,18 +1,38 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
+import { getApp } from "firebase/app";
+import { getStorage, ref, getDownloadURL } from "firebase/storage";
+
 import './styles.scss';
 
-export default function EventCard(): JSX.Element {
+type EventCardProps = {
+  imageName: String;
+  title: String;
+  details: String;
+  views: Number;
+};
+
+export default function EventCard({ imageName, title, details, views }:EventCardProps): JSX.Element {
+  const [urlImage, setUrlImage] = useState('');
+  
+  const firebaseApp = getApp();
+  const storage = getStorage(firebaseApp, "gs://events-app-704a6.appspot.com");
+
+  useEffect(() => {
+    (async () => {
+      const url = await getDownloadURL(ref(storage, `images/${imageName}`));
+      setUrlImage(url);
+    })();
+  }, []);
+
   return(
     <div className="col-md-3 col-sm-12">
-      <img src="https://via.placeholder.com/500x500" className="card-img-top img-card" alt="Imagem do Evento" />
+      <img src={ urlImage } className="card-img-top img-card" alt="Imagem do Evento" />
 
       <div className="card-body">
-        <h5>Título do Evento</h5>
-        <p className="card-text text-justify">
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sunt doloribus explicabo, natus maiores ratione sed. Debitis, facere dolorum consequatur ullam odio fuga, ducimus dolore perspiciatis unde illum excepturi soluta recusandae!
-        </p>
+        <h5>{ title }</h5>
+        <p className="card-text text-justify">{ details }</p>
 
         <div className="row footer-card d-flex align-items-center">
           <div className="col-6">
@@ -20,7 +40,7 @@ export default function EventCard(): JSX.Element {
           </div>
 
           <div className="col-6 text-right">
-            <i className="fas fa-eye"></i><span>2019</span>
+            <i className="fas fa-eye"></i><span className="pl-2">{ views }</span>
           </div>
         </div>
       </div>
