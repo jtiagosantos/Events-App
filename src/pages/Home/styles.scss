@@ -1,0 +1,22 @@
+.input-search {
+  border-color: #6c757d;
+}
+
+.btn-search {
+  background-color: #fff;
+  transition: .3s ease-in;
+
+  i {
+    color: #614ea6;
+    transition: .3s ease-in;
+  }
+
+  &:hover {
+    background-color: #f21667;
+    border-color: #f21667;
+
+    i {
+      color: #fff;
+    }
+  }
+}
