@@ -20,7 +20,10 @@ export default function Home(): JSX.Element {
 
     data.forEach(document => {
       if(document.data().title.indexOf(search) >= 0) {
-        eventsList.push(document.data());
+        eventsList.push({
+          id: document.id,
+          ...document.data()
+        });
       }
     });
 
@@ -66,7 +69,8 @@ export default function Home(): JSX.Element {
       <div className="row p-2 mx-auto">
         { events?.map(event => {
           return <EventCard 
-                    key={event.createdAt} 
+                    key={event.id} 
+                    id={event.id}
                     imageName={event.photo} 
                     title={event.title}
                     details={event.details}

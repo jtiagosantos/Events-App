@@ -7,13 +7,14 @@ import { getStorage, ref, getDownloadURL } from "firebase/storage";
 import './styles.scss';
 
 type EventCardProps = {
+  id: String;
   imageName: String;
   title: String;
   details: String;
   views: Number;
 };
 
-export default function EventCard({ imageName, title, details, views }:EventCardProps): JSX.Element {
+export default function EventCard({ id, imageName, title, details, views }:EventCardProps): JSX.Element {
   const [urlImage, setUrlImage] = useState('');
   
   const firebaseApp = getApp();
@@ -36,7 +37,7 @@ export default function EventCard({ imageName, title, details, views }:EventCard
 
         <div className="row footer-card d-flex align-items-center">
           <div className="col-6">
-            <Link to="#" className="btn btn-sm btn-details">+ detalhes</Link>
+            <Link to={`/event_details/${id}`} className="btn btn-sm btn-details">+ detalhes</Link>
           </div>
 
           <div className="col-6 text-right">
