@@ -18,6 +18,7 @@ export default function EventRegistration(): JSX.Element {
   const [date, setDate] = useState('');
   const [time, setTime] = useState('');
   const [photo, setPhoto] = useState<File | null>();
+  const [loading, setLoading] = useState(false);
 
   const userEmail = useSelector((state: RootStateOrAny) => state.userEmail);
 
@@ -31,6 +32,7 @@ export default function EventRegistration(): JSX.Element {
   }
 
   async function registerEvent() {
+    setLoading(true);
     
     try {
       await addDoc(collection(db, "events"), {
@@ -47,6 +49,7 @@ export default function EventRegistration(): JSX.Element {
       });
       await uploadBytes(storageReference, await fileToBlob(photo));
       
+      setLoading(false);
       alert('Evento publicado!');
     } catch(err) {
       alert(err)
@@ -117,10 +120,20 @@ export default function EventRegistration(): JSX.Element {
               onChange={ e => setPhoto(e.target.files?.[0]) } />
           </div>
 
-          <button 
-            onClick={ registerEvent }
-            className="w-100 btn btn-lg btn-publish mt-3 mb-2" 
-            type="button">Cadastrar</button>
+          {!loading && (
+            <button 
+              onClick={ registerEvent }
+              className="w-100 btn btn-lg btn-publish mt-3 mb-2" 
+              type="button">Publicar
+            </button>
+          )}
+          
+          {loading && (
+            <button className="w-100 btn btn-lg btn-publish mt-3 mb-2" type="button" disabled>
+              <span className="spinner-border spinner-border-sm mr-2 m-1 h6" role="status" aria-hidden="true"></span>
+              Publicando...
+            </button>
+          )}
         </form>
       </div>
     </>
