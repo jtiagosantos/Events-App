@@ -1,22 +1,23 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { RootStateOrAny, useSelector } from 'react-redux';
 
 import Navbar from '../../components/Navbar';
 import EventCard from '../../components/EventCard';
 
-import { collection, query, getDocs, getFirestore } from "firebase/firestore";
+import { collection, query, getDocs, getFirestore, where } from "firebase/firestore";
 
 import './styles.scss';
 
-export default function Home(): JSX.Element {
+export default function EventsByUser(): JSX.Element {
   const [events, setEvents] = useState<any[]>();
   const [search, setSearch] = useState('');
 
   const eventsList:any = [];
   const db = getFirestore();
+  const userEmail = useSelector((state: RootStateOrAny) => state.userEmail);
 
   async function searchEvents(search: String) {
-    const data = await getDocs(query(collection(db, "events")));
+    const data = await getDocs(query(collection(db, "events"), where("user", "==", userEmail)));
 
     data.forEach(document => {
       if(document.data().title.indexOf(search) >= 0) {

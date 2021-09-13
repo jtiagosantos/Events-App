@@ -8,6 +8,7 @@ import Register from './pages/Register';
 import Home from './pages/Home';
 import PasswordRecovery from './pages/RecoverPassword';
 import EventRegistration from './pages/EventRegistration';
+import EventsByUser from './components/EventsByUser';
 
 export function App(): JSX.Element {
   return (
@@ -15,6 +16,7 @@ export function App(): JSX.Element {
       <BrowserRouter>
         <Switch>
           <Route exact path="/" component={Home} />
+          <Route exact path="/my_events" component={EventsByUser} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/recover_password" component={PasswordRecovery} />
