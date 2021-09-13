@@ -16,7 +16,7 @@ export default function EventDetails(): JSX.Element {
 
       <div className="container-fluid">
         <div className="row">
-          <img src="https://via.placeholder.com/150" className="img-card" alt="Banner" />
+          <img src="https://via.placeholder.com/150" className="img-card-details" alt="Banner" />
         </div>
 
         <div className="row mt-5 d-flex justify-content-around">
