@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import { useSelector, useDispatch, RootStateOrAny } from 'react-redux';
 
@@ -7,9 +7,19 @@ import './styles.scss';
 export default function Navbar(): JSX.Element {
   const dispatch = useDispatch();
 
+  const history = useHistory();
+
+  function navigateToHomePage() {
+    history.push('/');
+  };
+
   return(
     <nav className="navbar navbar-expand-lg">
-      <span className="navbar-brand text-white font-weight-bold">Events App</span>
+      <span 
+        onClick={ navigateToHomePage } 
+        className="navbar-brand text-white font-weight-bold">
+          Events App
+      </span>
       <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <i className="fas fa-bars text-white"></i>
       </button>
