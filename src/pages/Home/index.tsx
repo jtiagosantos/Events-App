@@ -20,10 +20,7 @@ export default function Home(): JSX.Element {
 
     data.forEach(document => {
       if(document.data().title.indexOf(search) >= 0) {
-        eventsList.push({
-          id: document.id,
-          ...document.data()
-        });
+        eventsList.push(document.data());
       }
     });
 

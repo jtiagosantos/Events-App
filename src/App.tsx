@@ -22,7 +22,7 @@ export function App(): JSX.Element {
           <Route exact path="/register" component={Register} />
           <Route exact path="/recover_password" component={PasswordRecovery} />
           <Route exact path="/register_event" component={EventRegistration} />
-          <Route exact path="/event_details" component={EventDetails} />
+          <Route exact path="/event_details/:id" component={EventDetails} />
         </Switch>
       </BrowserRouter>
     </Provider>

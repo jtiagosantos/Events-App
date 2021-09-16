@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
 
 import { useSelector, RootStateOrAny } from 'react-redux';
 
@@ -36,6 +37,7 @@ export default function EventRegistration(): JSX.Element {
     
     try {
       await addDoc(collection(db, "events"), {
+        id: uuidv4(),
         title,
         type,
         details,
