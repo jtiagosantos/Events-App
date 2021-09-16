@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { RootStateOrAny, useSelector } from 'react-redux';
 
-import { collection, query, getDocs, getFirestore, where } from "firebase/firestore";
+import { collection, query, getDocs, getFirestore, where, doc, updateDoc, setDoc } from "firebase/firestore";
 import { getApp } from 'firebase/app';
 import { getDownloadURL, getStorage, ref } from 'firebase/storage';
 
@@ -27,6 +27,7 @@ type eventProps = {
 export default function EventDetails({ match }:any): JSX.Element {
   const [event, setEvent] = useState<eventProps | any>();
   const [urlImage, setUrlImage] = useState('');
+  const [idDocument, setIdDocument] = useState('');
   const [loading, setLoading] = useState(true);
   const loggedUser = useSelector((state: RootStateOrAny) => state.userEmail);
 
@@ -37,15 +38,25 @@ export default function EventDetails({ match }:any): JSX.Element {
   useEffect(() => {
     (async () => {
       const data = await getDocs(query(collection(db, "events"), where("id", "==", match.params.id)));
-      data.forEach(document => setEvent(document.data()));
-      
+      data.forEach(document => {
+        setEvent(document.data());
+        setIdDocument(document.id);
+      });
+
+      if(idDocument) {
+        const eventReference = doc(db, "events", idDocument);
+        updateDoc(eventReference, {
+          views: event.views + 1
+        });
+      }
+
       if(event?.photo) {
         const url = await getDownloadURL(ref(storage, `images/${event.photo}`));
         setUrlImage(url);
         setLoading(false);
       }
     })();
-  }, [event]);  
+  }, [idDocument]);  
   
   return(
     <>
@@ -63,7 +74,7 @@ export default function EventDetails({ match }:any): JSX.Element {
           <div className="row">
             <img src={ urlImage } className="img-card-details" alt={ event?.title } />
             <div className="col-12 text-right mt-2 views">
-              <i className="fas fa-eye"></i><span className="pl-2">{ event?.views }</span>
+              <i className="fas fa-eye"></i><span className="pl-2">{ event?.views + 1 }</span>
             </div>
             <h2 className="mx-auto mt-4"><strong>{ event?.title }</strong></h2>
           </div>
