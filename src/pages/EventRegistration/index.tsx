@@ -10,6 +10,9 @@ import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 
 import Navbar from '../../components/Navbar';
 
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css'; 
+
 import './styles.scss';
 
 type eventProps = {
@@ -70,11 +73,21 @@ export default function EventRegistration({ match }:any): JSX.Element {
       });
       await uploadBytes(storageReference, await fileToBlob(newImage));
       
-      setLoading(false);
-      alert('Evento publicado!');
+      toast('Evento publicado!',
+        {
+            position: "top-center",
+            style: {
+            borderRadius: '10px',
+            background: '#fff',
+            color: '#333',
+            },
+        }
+      );
     } catch(err) {
       alert(err)
     }
+
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -138,12 +151,24 @@ export default function EventRegistration({ match }:any): JSX.Element {
 
     setTimeout(() => {
       setLoading(false);
+      toast('Evento atualizado!',
+        {
+            position: "top-center",
+            style: {
+            borderRadius: '10px',
+            background: '#fff',
+            color: '#333',
+            },
+        }
+      );
     }, 1500);
   };
 
   return(
     <>
       <Navbar />
+
+      <ToastContainer />
 
       <div className="col-12 content">
         <div className="row">

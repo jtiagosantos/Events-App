@@ -8,6 +8,9 @@ import { getDownloadURL, getStorage, ref } from 'firebase/storage';
 
 import Navbar from '../../components/Navbar';
 
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css'; 
+
 import './styles.scss';
 
 type eventProps = {
@@ -63,12 +66,24 @@ export default function EventDetails({ match }:any): JSX.Element {
   async function deleteEvent() {
     const eventReference = doc(db, "events", idDocument);
     await deleteDoc(eventReference);
-    setDeleted(true);
+    toast('Evento removido!',
+      {
+          position: "top-center",
+          style: {
+          borderRadius: '10px',
+          background: '#fff',
+          color: '#333',
+          },
+      }
+    );
+    setTimeout(() => setDeleted(true), 2000);
   };
   
   return(
     <>
       <Navbar />
+
+      <ToastContainer />
 
       <div className="container-fluid">
         {loading ? (
