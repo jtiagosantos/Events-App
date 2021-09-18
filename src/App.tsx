@@ -9,7 +9,7 @@ import Register from './pages/Register';
 import Home from './pages/Home';
 import PasswordRecovery from './pages/RecoverPassword';
 import EventRegistration from './pages/EventRegistration';
-import EventsByUser from './components/EventsByUser';
+import EventsByUser from './pages/EventsByUser';
 import EventDetails from './pages/EventDetails';
 
 export function App(): JSX.Element {
