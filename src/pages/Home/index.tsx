@@ -78,6 +78,8 @@ export default function Home(): JSX.Element {
                   />;
         }) }
       </div>
+
+      {!events?.length && <h5 className="text-center mt-5">Sem eventos publicados!</h5>}
     </>
   );
 };
