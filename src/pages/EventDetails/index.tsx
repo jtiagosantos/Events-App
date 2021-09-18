@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { RootStateOrAny, useSelector } from 'react-redux';
 
-import { collection, query, getDocs, getFirestore, where, doc, updateDoc, setDoc } from "firebase/firestore";
+import { collection, query, getDocs, getFirestore, where, doc, updateDoc } from "firebase/firestore";
 import { getApp } from 'firebase/app';
 import { getDownloadURL, getStorage, ref } from 'firebase/storage';
 
@@ -105,7 +105,7 @@ export default function EventDetails({ match }:any): JSX.Element {
           </div>
 
           {loggedUser === event?.user && (
-            <Link to="" className="btn-edit">
+            <Link to={`/edit_event/${match.params.id}`} className="btn-edit">
               <i className="fas fa-pen-square fa-3x"></i>
             </Link>
           )}
