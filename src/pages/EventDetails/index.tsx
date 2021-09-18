@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { RootStateOrAny, useSelector } from 'react-redux';
 
-import { collection, query, getDocs, getFirestore, where, doc, updateDoc } from "firebase/firestore";
+import { collection, query, getDocs, getFirestore, where, doc, updateDoc, deleteDoc } from "firebase/firestore";
 import { getApp } from 'firebase/app';
 import { getDownloadURL, getStorage, ref } from 'firebase/storage';
 
@@ -29,6 +29,8 @@ export default function EventDetails({ match }:any): JSX.Element {
   const [urlImage, setUrlImage] = useState('');
   const [idDocument, setIdDocument] = useState('');
   const [loading, setLoading] = useState(true);
+  const [deleted, setDeleted] = useState(false);
+
   const loggedUser = useSelector((state: RootStateOrAny) => state.userEmail);
 
   const db = getFirestore();
@@ -57,6 +59,12 @@ export default function EventDetails({ match }:any): JSX.Element {
       }
     })();
   }, [idDocument]);  
+
+  async function deleteEvent() {
+    const eventReference = doc(db, "events", idDocument);
+    await deleteDoc(eventReference);
+    setDeleted(true);
+  };
   
   return(
     <>
@@ -105,13 +113,20 @@ export default function EventDetails({ match }:any): JSX.Element {
           </div>
 
           {loggedUser === event?.user && (
-            <Link to={`/edit_event/${match.params.id}`} className="btn-edit">
-              <i className="fas fa-pen-square fa-3x"></i>
-            </Link>
+            <>
+              <Link to={`/edit_event/${match.params.id}`} className="btn-edit btn-action">
+                <i className="fas fa-pen-square fa-3x"></i>
+              </Link>
+              <Link to="#" onClick={ deleteEvent } className="btn-delete btn-action">
+                <i className="fas fa-minus-square fa-3x"></i>
+              </Link>
+            </>
           )}
         </>
         }
       </div>
+
+      {deleted ? <Redirect to="/" /> : null}
     </>
   );
 };

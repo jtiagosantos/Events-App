@@ -12,18 +12,25 @@
   align-items: center;
 }
 
-.btn-edit {
+.btn-action {
   i {
-    position: fixed;
-    bottom: 10px;
-    right: 10px;
     color: #614ea6;
     transition: .3s ease-in;
+    position: fixed;
+    right: 10px;
 
     &:hover {
       color: #f21667;
     }
   }
+}
+
+.btn-edit i {
+  bottom: 60px;
+}
+
+.btn-delete i {
+  bottom: 10px;
 }
 
 .views {
