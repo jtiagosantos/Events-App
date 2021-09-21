@@ -1,46 +1,65 @@
-# Getting Started with Create React App
+<h1 align="center">
+    <img alt="Events-App" src=".github/cover.png" />
+</h1>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<hr>
 
-## Available Scripts
+## :memo: Project
 
-In the project directory, you can run:
+This project is an event publishing application.
 
-### `yarn start`
+This application was developed for study purposes and has the following features:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+* [:key:] User Authentication.
+* [:email:] Password recovery with automatic email sending.
+* [:bust_in_silhouette:] User registration.
+* [:memo:] Publish, edit, remove and search events for logged in users.
+* [:mag_right:] Event search for visiting users.
+* [:eyes:] Number of views of an event.
+* [:camera:] Image upload.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+<hr>
 
-### `yarn test`
+## :computer: Technologies used
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+:pushpin: Typescript
 
-### `yarn build`
+:pushpin: React
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+:pushpin: Bootstrap
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+:pushpin: Sass
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+:pushpin: Firebase
 
-### `yarn eject`
+<hr>
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## :rocket: How to use?
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+:heavy_check_mark: Clone project and access its folder.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```bash
+$ git clone https://github.com/jtiagosantos/Events-App.git
+$ cd Events-App
+$ code .
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+:heavy_check_mark: Configure file with environment variables.
 
-## Learn More
+:heavy_check_mark: To start it, follow the steps below:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+# Install dependencies
+$ yarn
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+# Start project
+$ yarn start
+```
+
+The app will be available in your browser at the address http://localhost:3000.
+
+Remembering that you will need to create an account on [Firebase](https://firebase.google.com/) and a project to make a Realtime Firestore Database and a Storage.
+
+<hr>
+
+:man_technologist: Made with :heart: by Tiago Santos.
